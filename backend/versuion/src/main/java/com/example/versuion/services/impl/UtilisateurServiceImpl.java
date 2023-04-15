@@ -46,7 +46,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     private boolean userAlreadyExists(String email) {
-        Optional<Utilisateurs> user = utilisateurRepository.findUtilisateurByEmail(email);
+        Optional<Utilisateurs> user = utilisateurRepository.findByEmail(email);
         return user.isPresent();
     }
 
@@ -82,7 +82,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public UtilisateurDto findByEmail(String email) {
-        return utilisateurRepository.findUtilisateurByEmail(email)
+        return utilisateurRepository.findByEmail(email)
                 .map(UtilisateurDto::fromEntity)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Aucun utilisateur avec l'email = " + email + " n' ete trouve dans la BDD",

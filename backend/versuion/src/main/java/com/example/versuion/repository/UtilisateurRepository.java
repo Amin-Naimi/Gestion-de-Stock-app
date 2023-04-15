@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateurs,Long> {
     // JPQL query
-    @Query(value = "select utilisateurs from utilisateurs where utilisateurs.email = :email",nativeQuery = true)
-    Optional<Utilisateurs> findUtilisateurByEmail(@Param("email") String email);
+    //@Query(value = "select utilisateurs from utilisateurs where utilisateurs.email = :email",nativeQuery = true)
+    //Optional<Utilisateurs> findUtilisateurByEmail(@Param("email") String email);
 
     Optional<Utilisateurs> findByEmail(String email);
 }

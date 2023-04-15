@@ -46,9 +46,9 @@ public class EntrepriseServiceImpl implements EntrepriseService {
                 entrepriseRepository.save(EntrepriseDto.toEntity(dto))
         );
 
-        UtilisateurDto utilisateur = fromEntreprise(savedEntreprise);
+        UtilisateurDto utilisateurParDfaut = fromEntreprise(savedEntreprise);
 
-        UtilisateurDto savedUser = utilisateurService.save(utilisateur);
+        UtilisateurDto savedUser = utilisateurService.save(utilisateurParDfaut);
 
         RoleDto rolesDto = RoleDto.builder()
                 .rolename("ADMIN")
@@ -64,11 +64,11 @@ public class EntrepriseServiceImpl implements EntrepriseService {
         return UtilisateurDto.builder()
                 .adresse(dto.getAdresse())
                 .nom(dto.getNom())
-                .prenom(dto.getCodefiscale())
+                .prenom("Undefined")
                 .email(dto.getEmail())
                 .motDePasse(generateRandomPassword())
                 .entreprise(dto)
-                .dateDeNaissance(Instant.now())
+                .dateDeNaissance(null)
                 .photo(dto.getPhoto())
                 .build();
     }
