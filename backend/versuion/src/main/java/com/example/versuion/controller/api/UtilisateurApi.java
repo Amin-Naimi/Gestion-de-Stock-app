@@ -11,7 +11,7 @@ import static com.example.versuion.utiles.Constants.UTILISATEUR_ENDPOINT;
 public interface UtilisateurApi {
 
     @PostMapping(UTILISATEUR_ENDPOINT + "/create")
-    UtilisateurDto save(@RequestBody UtilisateurDto dto);
+    String save(@RequestBody UtilisateurDto dto);
 
    // @PostMapping(UTILISATEUR_ENDPOINT + "/update/password")
     //UtilisateurDto changerMotDePasse(@RequestBody ChangerMotDePasseUtilisateurDto dto);

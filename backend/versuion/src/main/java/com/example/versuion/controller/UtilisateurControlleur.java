@@ -19,8 +19,8 @@ public class UtilisateurControlleur implements UtilisateurApi {
     }
 
     @Override
-    public UtilisateurDto save(UtilisateurDto dto) {
-        return utilisateurService.save(dto);
+    public String save(UtilisateurDto dto) {
+        return utilisateurService.save(dto).toString();
     }
 
     /*@Override

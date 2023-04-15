@@ -74,4 +74,19 @@ public class UtilisateurDto {
 
         return utilisateur;
     }
+
+    @Override
+    public String toString() {
+        return "UtilisateurDto{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", dateDeNaissance=" + dateDeNaissance +
+                ", adresse=" + adresse +
+                ", photo='" + photo + '\'' +
+                ", entreprise=" + entreprise +
+                ", roles=" + roles +
+                '}';
+    }
 }
