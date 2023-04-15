@@ -59,7 +59,7 @@ public class JwtRequestFiltre extends OncePerRequestFilter {
         }
         // pour stocker l'objet
         MDC.put("idEntreprise", idEntreprise);
-        //cotenir les restes de filtre
+        //contenir les restes des filtres
         filterChain.doFilter(request, response);
     }
 }

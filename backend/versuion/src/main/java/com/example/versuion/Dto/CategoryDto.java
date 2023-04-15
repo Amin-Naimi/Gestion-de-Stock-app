@@ -48,4 +48,14 @@ public class CategoryDto {
         return category;
     }
 
+    @Override
+    public String toString() {
+        return "CategoryDto{" +
+                "id=" + id +
+                ", codeCategory='" + codeCategory + '\'' +
+                ", designation='" + designation + '\'' +
+                ", idEntreprise=" + idEntreprise +
+                ", articleList=" + articleList +
+                '}';
+    }
 }

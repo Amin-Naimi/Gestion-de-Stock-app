@@ -14,6 +14,7 @@ import com.example.versuion.services.CategoryService;
 import com.example.versuion.validator.CategoryValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -27,22 +28,24 @@ public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
     private ArticleRepository articleRepository;
-
     @Autowired
-    public CategoryServiceImpl(CategoryRepository categoryRepository, ArticleRepository articleRepository ) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, ArticleRepository articleRepository, PasswordEncoder
+                               passwordEncoder) {
         this.categoryRepository = categoryRepository;
         this.articleRepository = articleRepository;
     }
 
     @Override
-    public CategoryDto save(CategoryDto categoryDto) {
+    public String save(CategoryDto categoryDto) {
         List<String> errors = CategoryValidator.validate(categoryDto);
         if (!errors.isEmpty()) {
             log.error("Article is not valid {}", categoryDto);
             throw new InvalidEntityException("La category n'est pas valide", ErrorCodes.CATEGORY_NOT_VALID, errors);
         }
-        return CategoryDto.fromEntity(categoryRepository.save(CategoryDto.toEntity(categoryDto))
-        );
+        Category categoryEntity = CategoryDto.toEntity(categoryDto);
+        categoryRepository.save(categoryEntity);
+        CategoryDto.fromEntity(categoryEntity);
+        return categoryDto.toString();
     }
 
     @Override

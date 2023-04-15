@@ -20,7 +20,7 @@ public class CategoryControlleur implements CategoryApi {
     }
 
     @Override
-    public CategoryDto save(CategoryDto dto) {
+    public String save(CategoryDto dto) {
         return categoryService.save(dto);
     }
 

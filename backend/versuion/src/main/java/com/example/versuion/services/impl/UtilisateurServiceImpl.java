@@ -10,6 +10,8 @@ import com.example.versuion.services.UtilisateurService;
 import com.example.versuion.validator.UtilisateursValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -21,13 +23,17 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UtilisateurServiceImpl implements UtilisateurService {
 
+   @Autowired
     private UtilisateurRepository utilisateurRepository;
-   // private PasswordEncoder passwordEncoder;
+
+   ///@Autowired
+    private  PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
+    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository,
+                                  @Lazy PasswordEncoder passwordEncoder) {
         this.utilisateurRepository = utilisateurRepository;
-       // this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -41,8 +47,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
             throw new InvalidEntityException("Un autre utilisateur avec le meme email existe deja", ErrorCodes.UTILISATEUR_ALREADY_EXISTS,
                     Collections.singletonList("Un autre utilisateur avec le meme email existe deja dans la BDD"));
         }
-        //dto.setMoteDePasse(passwordEncoder.encode(dto.getMoteDePasse()));
-        return UtilisateurDto.fromEntity(utilisateurRepository.save(UtilisateurDto.toEntity(dto)));
+
+        dto.setMotDePasse(passwordEncoder.encode(dto.getMotDePasse()));
+        return UtilisateurDto.fromEntity
+                (utilisateurRepository.save
+                        (UtilisateurDto.toEntity(dto)
+                        )
+                );
     }
 
     private boolean userAlreadyExists(String email) {

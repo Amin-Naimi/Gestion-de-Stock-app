@@ -10,20 +10,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.Arrays;
-
 @EnableWebSecurity
-/*@EnableWebSecurity ccontient :
-* @Configuration
- */
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+/*@EnableWebSecurity ccontient
+@configuration
+:*/
 
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
-    private  ApplicationUserDetailsService applicationUserDetailsService;
+    private ApplicationUserDetailsService applicationUserDetailsService;
 
     @Autowired
     private JwtRequestFiltre jwtRequestFiltre;
@@ -38,9 +37,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()//desactiver le csrf
-                .authorizeRequests()
+        .authorizeRequests()
                 .antMatchers("/**/auth/authentification",
-                        "/**/entreprises/create",
+                        "/**/utilisateurs/create",
                         "/v2/api-docs",
                         "/swagger-resources",
                         "/swagger-resources/**",
@@ -69,9 +68,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 
 }
+
+
+//// ctrl + alt + l

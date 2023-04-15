@@ -45,14 +45,4 @@ public class AbstractEntity implements Serializable {
     @Column(name = "lastModifiedDate")
     private Instant lastModifiedDate;
 
-    /*Avant d'enregistrer
-    @PrePersist
-    void prePersist(){
-        creationDate = Instant.now();
-    }
-    // avant de faire la mise à jour
-    @PreUpdate
-    void preUpdate(){
-        lastModifiedDate = Instant.now();
-    }*/
 }
