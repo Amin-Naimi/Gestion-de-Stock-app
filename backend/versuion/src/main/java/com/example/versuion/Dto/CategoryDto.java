@@ -40,7 +40,6 @@ public class CategoryDto {
             return null;
         }
         Category category = new Category();
-        category.setId(categoryDto.getId());
         category.setCodeCategory(categoryDto.getCodeCategory());
         category.setDesignation(categoryDto.getDesignation());
         category.setIdEntreprise(categoryDto.getIdEntreprise());

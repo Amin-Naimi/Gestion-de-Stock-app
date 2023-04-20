@@ -12,7 +12,7 @@ import static com.example.versuion.utiles.Constants.APP_ROOT;
 @Api(APP_ROOT + "/categories")
 public interface CategoryApi {
     @PostMapping(value = APP_ROOT + "/categories/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    String save(@RequestBody CategoryDto dto);
+    CategoryDto save(@RequestBody CategoryDto dto);
 
     @PutMapping(value = APP_ROOT + "/categories/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     CategoryDto update(@PathVariable("id") Long id, @RequestBody CategoryDto Dto);

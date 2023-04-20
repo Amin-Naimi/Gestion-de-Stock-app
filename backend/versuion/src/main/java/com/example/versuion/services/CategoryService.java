@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CategoryService {
 
-    String save(CategoryDto dto);
+    CategoryDto save(CategoryDto dto);
 
     CategoryDto update(Long id, CategoryDto Dto);
 

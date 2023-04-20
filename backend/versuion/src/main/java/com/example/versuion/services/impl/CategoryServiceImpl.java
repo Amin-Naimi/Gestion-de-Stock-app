@@ -36,16 +36,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public String save(CategoryDto categoryDto) {
+    public CategoryDto save(CategoryDto categoryDto) {
         List<String> errors = CategoryValidator.validate(categoryDto);
         if (!errors.isEmpty()) {
             log.error("Article is not valid {}", categoryDto);
             throw new InvalidEntityException("La category n'est pas valide", ErrorCodes.CATEGORY_NOT_VALID, errors);
         }
         Category categoryEntity = CategoryDto.toEntity(categoryDto);
-        categoryRepository.save(categoryEntity);
-        CategoryDto.fromEntity(categoryEntity);
-        return categoryDto.toString();
+        Category  savedCategory = categoryRepository.save(categoryEntity);
+        Long id = savedCategory.getId();
+        CategoryDto dto = CategoryDto.fromEntity(savedCategory);
+        return dto;
     }
 
     @Override
@@ -86,6 +87,8 @@ public class CategoryServiceImpl implements CategoryService {
             return null;
         }
             Optional<Category> category = categoryRepository.findByCodeCategory(code);
+            Long id = category.get().getId();
+            System.out.println("Mon id "+id);
             CategoryDto categoryDto = CategoryDto.fromEntity(category.get());
             return Optional.of(categoryDto).orElseThrow( () ->
                     new EntityNotFoundException("Aucun category avec l' code "+ categoryDto+"dans la base",ErrorCodes.CATEGORY_NOT_FOUND));
@@ -94,9 +97,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryDto> findAll() {
         //stream() pour boucler
-        return categoryRepository.findAll().stream()
+        List<CategoryDto> listeCategories = categoryRepository.findAll().stream()
                 .map(CategoryDto::fromEntity)
                 .collect(Collectors.toList());
+
+        return listeCategories;
     }
 
     @Override
