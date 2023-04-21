@@ -30,6 +30,7 @@ public class ComandeClientDto {
 
     private Integer idEntreprise;
 
+    @JsonIgnore
     private List<LigneCommandeClientDto> ligneComandeClientList;
 
     //Mapping
@@ -60,6 +61,10 @@ public class ComandeClientDto {
         commandeClient.setIdEntreprise(comandeClientDto.getIdEntreprise());
 
         return commandeClient;
+    }
+
+    public boolean isCommandeLivree() {
+        return EtatCommande.LIVREE.equals(this.etatCommande);
     }
 
 }

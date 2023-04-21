@@ -1,6 +1,9 @@
 package com.example.versuion.controller.api;
 
 import com.example.versuion.Dto.ArticleDto;
+import com.example.versuion.Dto.LigneCommandeClientDto;
+import com.example.versuion.Dto.LigneCommandeFournisseurDto;
+import com.example.versuion.Dto.LigneVentDto;
 import io.swagger.annotations.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +48,19 @@ public interface ArticleApi {
             @ApiResponse(code = 200, message = "La liste des article / Une liste vide")
     })
     List<ArticleDto> findAll();
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/vente/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<LigneVentDto> findHistoriqueVentes(@PathVariable("idArticle") Long idArticle);
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/commandeclient/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<LigneCommandeClientDto> findHistoriaueCommandeClient(@PathVariable("idArticle") Long idArticle);
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/commandefournisseur/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(@PathVariable("idArticle") Long idArticle);
+
+    @GetMapping(value = APP_ROOT + "/articles/filter/category/{idCategory}", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<ArticleDto> findAllArticleByIdCategory(@PathVariable("idCategory") Long idCategory);
+
 
     @DeleteMapping(value = APP_ROOT + "/articles/delete/{idArticle}")
     @ApiOperation(value = "Supprimer un article", notes = "Cette methode permet de supprimer un article par ID")

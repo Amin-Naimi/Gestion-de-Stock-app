@@ -18,7 +18,7 @@ public class CommandeClient extends AbstractEntity{
     private Instant dateComande;
 
     @Column(name = "etatcommande")
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     private EtatCommande etatCommande;
 
     @Column(name = "identreprise")

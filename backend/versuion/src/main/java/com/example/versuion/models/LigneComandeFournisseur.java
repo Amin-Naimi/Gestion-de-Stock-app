@@ -21,7 +21,7 @@ public class LigneComandeFournisseur extends AbstractEntity{
 
     @ManyToOne
     @JoinColumn(name = "Idcommandefournisseur")
-    private ComandeFournisseur commandefournisseur;
+    private ComandeFournisseur commandeFournisseur;
 
     private BigDecimal quantite;
 

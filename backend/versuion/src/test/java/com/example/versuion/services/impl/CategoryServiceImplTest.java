@@ -27,8 +27,6 @@ public class CategoryServiceImplTest {
 
         CategoryDto savedCategory = categoryService.save(expectedCategoryDto);
 
-        String moncategories = savedCategory.toString();
-        System.out.println("Mon id" + moncategories );
 
         assertNotNull(savedCategory);
         assertNotNull(savedCategory.getId());

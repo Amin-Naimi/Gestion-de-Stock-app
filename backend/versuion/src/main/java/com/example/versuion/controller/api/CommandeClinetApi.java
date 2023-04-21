@@ -2,10 +2,12 @@ package com.example.versuion.controller.api;
 
 import com.example.versuion.Dto.ComandeClientDto;
 import com.example.versuion.Dto.LigneCommandeClientDto;
+import com.example.versuion.models.EtatCommande;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static com.example.versuion.utiles.Constants.APP_ROOT;
@@ -13,18 +15,6 @@ import static com.example.versuion.utiles.Constants.APP_ROOT;
 public interface CommandeClinetApi {
     @PostMapping(APP_ROOT + "/commandesclients/create")
     ResponseEntity<ComandeClientDto> save(@RequestBody ComandeClientDto dto);
-
-   /* @PatchMapping(APP_ROOT + "/commandesclients/update/etat/{idCommande}/{etatCommande}")
-    ResponseEntity<CommandeClientDto> updateEtatCommande(@PathVariable("idCommande") Integer idCommande, @PathVariable("etatCommande") EtatCommande etatCommande);
-    @PatchMapping(APP_ROOT + "/commandesclients/update/quantite/{idCommande}/{idLigneCommande}/{quantite}")
-    ResponseEntity<CommandeClientDto> updateQuantiteCommande(@PathVariable("idCommande") Integer idCommande, @PathVariable("idLigneCommande") Integer idLigneCommande, @PathVariable("quantite") BigDecimal quantite);
-    @PatchMapping(APP_ROOT + "/commandesclients/update/client/{idCommande}/{idClient}")
-    ResponseEntity<CommandeClientDto> updateClient(@PathVariable("idCommande") Integer idCommande, @PathVariable("idClient") Integer idClient);
-    @PatchMapping(APP_ROOT + "/commandesclients/update/article/{idCommande}/{idLigneCommande}/{idArticle}")
-    ResponseEntity<CommandeClientDto> updateArticle(@PathVariable("idCommande") Integer idCommande,
-                                                    @PathVariable("idLigneCommande") Integer idLigneCommande, @PathVariable("idArticle") Integer idArticle);
-    @DeleteMapping(APP_ROOT + "/commandesclients/delete/article/{idCommande}/{idLigneCommande}")
-    ResponseEntity<CommandeClientDto> deleteArticle(@PathVariable("idCommande") Integer idCommande, @PathVariable("idLigneCommande") Integer idLigneCommande);*/
 
     @GetMapping(APP_ROOT + "/commandesclients/{idCommandeClient}")
     ResponseEntity<ComandeClientDto> findById(@PathVariable Long idCommandeClient);
@@ -35,9 +25,29 @@ public interface CommandeClinetApi {
     @GetMapping(APP_ROOT + "/commandesclients/all")
     ResponseEntity<List<ComandeClientDto>> findAll();
 
-   // @GetMapping(APP_ROOT + "/commandesclients/lignesCommande/{idCommande}")
-    //ResponseEntity<List<LigneCommandeClientDto>> findAllLignesCommandesClientByCommandeClientId(@PathVariable("idCommande") Integer idCommande);
-
     @DeleteMapping(APP_ROOT + "/commandesclients/delete/{idCommandeClient}")
     ResponseEntity delete(@PathVariable("idCommandeClient") Long id);
+
+
+    @PatchMapping(APP_ROOT + "/commandesclients/update/etat/{idCommande}/{etatCommande}")
+    ResponseEntity<ComandeClientDto> updateEtatCommande(@PathVariable("idCommande") Long idCommande, @PathVariable("etatCommande") EtatCommande etatCommande);
+
+    @PatchMapping(APP_ROOT + "/commandesclients/update/quantite/{idCommande}/{idLigneCommande}/{quantite}")
+    ResponseEntity<ComandeClientDto> updateQuantiteCommande(@PathVariable("idCommande") Long idCommande,
+                                                             @PathVariable("idLigneCommande") Long idLigneCommande, @PathVariable("quantite") BigDecimal quantite);
+
+    @PatchMapping(APP_ROOT + "/commandesclients/update/client/{idCommande}/{idClient}")
+    ResponseEntity<ComandeClientDto> updateClient(@PathVariable("idCommande") Long idCommande, @PathVariable("idClient") Long idClient);
+
+    @PatchMapping(APP_ROOT + "/commandesclients/update/article/{idCommande}/{idLigneCommande}/{idArticle}")
+    ResponseEntity<ComandeClientDto> updateArticle(@PathVariable("idCommande") Long idCommande,
+                                                    @PathVariable("idLigneCommande") Long idLigneCommande, @PathVariable("idArticle") Long idArticle);
+
+    @DeleteMapping(APP_ROOT + "/commandesclients/delete/article/{idCommande}/{idLigneCommande}")
+    ResponseEntity<ComandeClientDto> deleteArticle(@PathVariable("idCommande") Long idCommande, @PathVariable("idLigneCommande") Long idLigneCommande);
+
+     @GetMapping(APP_ROOT + "/commandesclients/lignesCommande/{idCommande}")
+    ResponseEntity<List<LigneCommandeClientDto>> findAllLignesCommandesClientByCommandeClientId(@PathVariable("idCommande") Long idCommande);
+
+
 }

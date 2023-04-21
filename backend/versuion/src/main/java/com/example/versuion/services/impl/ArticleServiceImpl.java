@@ -1,11 +1,14 @@
 package com.example.versuion.services.impl;
 
 import com.example.versuion.Dto.ArticleDto;
+import com.example.versuion.Dto.LigneCommandeClientDto;
+import com.example.versuion.Dto.LigneCommandeFournisseurDto;
+import com.example.versuion.Dto.LigneVentDto;
 import com.example.versuion.exception.EntityNotFoundException;
 import com.example.versuion.exception.ErrorCodes;
 import com.example.versuion.exception.InvalidEntityException;
 import com.example.versuion.models.Article;
-import com.example.versuion.repository.ArticleRepository;
+import com.example.versuion.repository.*;
 import com.example.versuion.services.ArticleService;
 import com.example.versuion.validator.ArticleValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +24,20 @@ import java.util.stream.Collectors;
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
+    private LigneVenteRepository ligneVenteRepository;
+    private LigneCommandeClientRepository ligneCommandeClientRepository;
+    private LigneCommandeFournisseurRepository ligneCommandeFournisseurRepository;
 
     //Injection par constructeur
     @Autowired
-    public ArticleServiceImpl(ArticleRepository articleRepository){
+    public ArticleServiceImpl(ArticleRepository articleRepository,
+                              LigneVenteRepository ligneVenteRepository,
+                              LigneCommandeFournisseurRepository ligneCommandeFournisseurRepository,
+                              LigneCommandeClientRepository ligneCommandeClientRepository){
         this.articleRepository = articleRepository;
+        this.ligneVenteRepository = ligneVenteRepository;
+        this.ligneCommandeClientRepository = ligneCommandeClientRepository;
+        this.ligneCommandeFournisseurRepository = ligneCommandeFournisseurRepository;
     }
 
     @Override
@@ -78,5 +90,33 @@ public class ArticleServiceImpl implements ArticleService {
             return;//por quitter la méthode
         }
         articleRepository.deleteById(articleId);
+    }
+
+    @Override
+    public List<LigneVentDto> findHistoriqueVentes(Long idArticle) {
+        return ligneVenteRepository.findAllByArticleId(idArticle).stream()
+                .map(LigneVentDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LigneCommandeClientDto> findHistoriqueCommandeClient(Long idArticle) {
+        return ligneCommandeClientRepository.findAllByArticleId(idArticle).stream()
+                .map(LigneCommandeClientDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(Long idArticle) {
+        return ligneCommandeFournisseurRepository.findAllByArticleId(idArticle).stream()
+                .map(LigneCommandeFournisseurDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArticleDto> findAllArticleByIdCategory(Long idCategory) {
+        return articleRepository.findAllByCategoryId(idCategory).stream()
+                .map(ArticleDto::fromEntity)
+                .collect(Collectors.toList());
     }
 }

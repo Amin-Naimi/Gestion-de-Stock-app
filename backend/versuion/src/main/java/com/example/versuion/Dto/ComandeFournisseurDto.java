@@ -23,6 +23,7 @@ public class ComandeFournisseurDto {
 
     private Integer idEntreprise;
 
+    @JsonIgnore
     private List<LigneCommandeFournisseurDto> ligneComandeFournisseurList;
 
     //Mapping trasformer l entité en dto
@@ -53,5 +54,9 @@ public class ComandeFournisseurDto {
        comandeFournisseur.setIdEntreprise(comandeFournisseurDto.getIdEntreprise());
 
         return comandeFournisseur;
+    }
+
+    public boolean isCommandeLivree() {
+        return EtatCommande.LIVREE.equals(this.etatCommande);
     }
 }
