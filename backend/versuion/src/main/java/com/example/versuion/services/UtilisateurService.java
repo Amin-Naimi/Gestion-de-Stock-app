@@ -1,5 +1,6 @@
 package com.example.versuion.services;
 
+import com.example.versuion.Dto.ChangerMotDePasseUtilisateurDto;
 import com.example.versuion.Dto.UtilisateurDto;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface UtilisateurService {
 
     UtilisateurDto findByEmail(String email);
 
-    //UtilisateurDto changerMotDePasse(ChangerMotDePasseUtilisateurDto dto);
+    UtilisateurDto changerMotDePasse(ChangerMotDePasseUtilisateurDto dto);
 }

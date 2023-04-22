@@ -1,9 +1,6 @@
 package com.example.versuion.services.impl;
 
-import com.example.versuion.Dto.ArticleDto;
-import com.example.versuion.Dto.ClientDto;
-import com.example.versuion.Dto.ComandeClientDto;
-import com.example.versuion.Dto.LigneCommandeClientDto;
+import com.example.versuion.Dto.*;
 import com.example.versuion.exception.EntityNotFoundException;
 import com.example.versuion.exception.ErrorCodes;
 import com.example.versuion.exception.InvalidEntityException;
@@ -15,6 +12,7 @@ import com.example.versuion.repository.CommandeClientRepository;
 import com.example.versuion.repository.LigneCommandeClientRepository;
 import com.example.versuion.services.ClientService;
 import com.example.versuion.services.CommandeClinetService;
+import com.example.versuion.services.MvtStkService;
 import com.example.versuion.validator.ArticleValidator;
 import com.example.versuion.validator.CommandeClientValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,16 +35,19 @@ public class CommandeClinetServiceImpl implements CommandeClinetService {
     private ClientRepository clientRepository;
     private ArticleRepository articleRepository;
     private LigneCommandeClientRepository ligneCommandeClientRepository;
+    private MvtStkService mvtStkService;
 
     @Autowired
     public CommandeClinetServiceImpl(CommandeClientRepository commandeClientRepository,
                                      ClientRepository clientRepository,
                                      ArticleRepository articleRepository,
-                                     LigneCommandeClientRepository ligneCommandeClientRepository) {
+                                     LigneCommandeClientRepository ligneCommandeClientRepository,
+                                     MvtStkService mvtStkService) {
         this.commandeClientRepository = commandeClientRepository;
         this.clientRepository = clientRepository;
         this.articleRepository = articleRepository;
         this.ligneCommandeClientRepository = ligneCommandeClientRepository;
+        this.mvtStkService = mvtStkService;
     }
 
     @Override
@@ -88,7 +90,7 @@ public class CommandeClinetServiceImpl implements CommandeClinetService {
 
         if (!articleErrors.isEmpty()) {
             log.warn("");
-            throw new InvalidEntityException("Article n'existe pas dans la BDD", ErrorCodes.ARTICLE_NOT_FOUND, articleErrors);
+            throw new InvalidEntityException("Article n'existe pas dans la BD", ErrorCodes.ARTICLE_NOT_FOUND, articleErrors);
         }
 
         CommandeClient savedCmdClt = commandeClientRepository.save(ComandeClientDto.toEntity(dto));
@@ -155,7 +157,12 @@ public class CommandeClinetServiceImpl implements CommandeClinetService {
 
         ComandeClientDto comandeClientDto = checkEtatCommande(idCommande);
         comandeClientDto.setEtatCommande(etatCommande);
-        return ComandeClientDto.fromEntity(commandeClientRepository.save(ComandeClientDto.toEntity(comandeClientDto)));
+
+        CommandeClient commandeClientSaved = commandeClientRepository.save(ComandeClientDto.toEntity(comandeClientDto));
+        if(comandeClientDto.isCommandeLivree()) {
+            updateMvtStk(idCommande);
+        }
+        return ComandeClientDto.fromEntity(commandeClientSaved);
     }
 
     @Override
@@ -289,6 +296,25 @@ public class CommandeClinetServiceImpl implements CommandeClinetService {
                     "Aucune ligne commande client n'a ete trouve avec l'ID " + idLigneCommande, ErrorCodes.COMMANDE_CLIENT_NOT_FOUND);
         }
         return ligneCommandeClientOptional;
+    }
+
+    private void updateMvtStk(Long idCommande) {
+        List<LigneComandeClient> ligneCommandeClients = ligneCommandeClientRepository.findAllByCommandeClientId(idCommande);
+        ligneCommandeClients.forEach(lig -> {
+            effectuerSortie(lig);
+        });
+    }
+
+    private void effectuerSortie(LigneComandeClient lig) {
+        MvtStkDto mvtStkDto = MvtStkDto.builder()
+                .article(ArticleDto.fromEntity(lig.getArticle()))
+                .dateMvt(Instant.now())
+                .typeMvt(TypeMvtStk.SORTIE)
+                .sourceMvt(SourceMvtStk.COMMANDE_CLIENT)
+                .quantite(lig.getQuantite())
+                .idEntreprise(lig.getIdEntreprise())
+                .build();
+        mvtStkService.sortieStock(mvtStkDto);
     }
 
 
