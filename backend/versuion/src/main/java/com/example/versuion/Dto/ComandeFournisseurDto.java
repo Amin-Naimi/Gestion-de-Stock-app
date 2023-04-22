@@ -35,7 +35,7 @@ public class ComandeFournisseurDto {
                 .id(comandeFournisseur.getId())
                 .code(comandeFournisseur.getCode())
                 .dateComande(comandeFournisseur.getDateComande())
-                .fournisseur(FournisseurDto.fromEntity(comandeFournisseur.getIdfournisseur()))
+                .fournisseur(FournisseurDto.fromEntity(comandeFournisseur.getFournisseur()))
                 .idEntreprise(comandeFournisseur.getIdEntreprise())
                 .etatCommande(comandeFournisseur.getEtatCommande())
                 .build();
@@ -49,7 +49,7 @@ public class ComandeFournisseurDto {
        comandeFournisseur.setId(comandeFournisseurDto.getId());
        comandeFournisseur.setCode(comandeFournisseurDto.getCode());
        comandeFournisseur.setDateComande(comandeFournisseurDto.getDateComande());
-       comandeFournisseur.setIdfournisseur(FournisseurDto.toEntity(comandeFournisseurDto.getFournisseur()));
+       comandeFournisseur.setFournisseur(FournisseurDto.toEntity(comandeFournisseurDto.getFournisseur()));
        comandeFournisseur.setEtatCommande(comandeFournisseurDto.getEtatCommande());
        comandeFournisseur.setIdEntreprise(comandeFournisseurDto.getIdEntreprise());
 

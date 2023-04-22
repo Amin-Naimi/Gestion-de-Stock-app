@@ -15,6 +15,7 @@ public class ClientValidator {
             errors.add("Veuillez renseigner le prenom du client");
             errors.add("Veuillez renseigner le Mail du client");
             errors.add("Veuillez renseigner le numero de telephone du client");
+            //Por Récupérer tous les message d'erreur d'adresse
             errors.addAll(AdresseValidator.validate(null));
             return errors;
         }

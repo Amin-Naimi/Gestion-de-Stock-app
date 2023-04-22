@@ -7,6 +7,7 @@ import com.example.versuion.Dto.VentesDto;
 import com.example.versuion.exception.EntityNotFoundException;
 import com.example.versuion.exception.ErrorCodes;
 import com.example.versuion.exception.InvalidEntityException;
+import com.example.versuion.exception.InvalidOperationException;
 import com.example.versuion.models.*;
 import com.example.versuion.repository.ArticleRepository;
 import com.example.versuion.repository.LigneVenteRepository;
@@ -117,6 +118,10 @@ public class VentesServiceImp implements VentesService {
         if (id == null) {
             log.error("Vente ID is NULL");
             return;
+        }
+        List<LigneVente> ligneVentes = ligneVenteRepository.findAllByVenteId(id);
+        if(!ligneVentes.isEmpty()){
+            throw new InvalidOperationException("Impossible de supprimer cette vente",ErrorCodes.VENTE_ALREADY_IN_USE);
         }
         ventesRepository.deleteById(id);
     }

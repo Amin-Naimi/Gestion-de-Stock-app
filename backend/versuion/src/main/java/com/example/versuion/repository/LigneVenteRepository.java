@@ -10,4 +10,5 @@ public interface LigneVenteRepository extends JpaRepository<LigneVente,Long> {
 
     List<LigneVente> findAllByArticleId(Long articleId);
 
+    List<LigneVente> findAllByVenteId(Long id);
 }

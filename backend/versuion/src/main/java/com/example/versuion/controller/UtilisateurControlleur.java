@@ -1,5 +1,6 @@
 package com.example.versuion.controller;
 
+import com.example.versuion.Dto.ChangerMotDePasseUtilisateurDto;
 import com.example.versuion.Dto.UtilisateurDto;
 import com.example.versuion.controller.api.UtilisateurApi;
 import com.example.versuion.services.UtilisateurService;
@@ -23,10 +24,6 @@ public class UtilisateurControlleur implements UtilisateurApi {
         return utilisateurService.save(dto).toString();
     }
 
-    /*@Override
-    public UtilisateurDto changerMotDePasse(ChangerMotDePasseUtilisateurDto dto) {
-        return utilisateurService.changerMotDePasse(dto);
-    }*/
     @Override
     public UtilisateurDto findById(Long id) {
         return utilisateurService.findById(id);
@@ -45,5 +42,9 @@ public class UtilisateurControlleur implements UtilisateurApi {
     @Override
     public void delete(Long id) {
         utilisateurService.delete(id);
+    }
+    @Override
+    public UtilisateurDto changerMotDePasse(ChangerMotDePasseUtilisateurDto dto) {
+        return utilisateurService.changerMotDePasse(dto);
     }
 }

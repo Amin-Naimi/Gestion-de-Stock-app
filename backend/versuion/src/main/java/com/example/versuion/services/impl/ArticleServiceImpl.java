@@ -7,7 +7,11 @@ import com.example.versuion.Dto.LigneVentDto;
 import com.example.versuion.exception.EntityNotFoundException;
 import com.example.versuion.exception.ErrorCodes;
 import com.example.versuion.exception.InvalidEntityException;
+import com.example.versuion.exception.InvalidOperationException;
 import com.example.versuion.models.Article;
+import com.example.versuion.models.LigneComandeClient;
+import com.example.versuion.models.LigneComandeFournisseur;
+import com.example.versuion.models.LigneVente;
 import com.example.versuion.repository.*;
 import com.example.versuion.services.ArticleService;
 import com.example.versuion.validator.ArticleValidator;
@@ -33,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleServiceImpl(ArticleRepository articleRepository,
                               LigneVenteRepository ligneVenteRepository,
                               LigneCommandeFournisseurRepository ligneCommandeFournisseurRepository,
-                              LigneCommandeClientRepository ligneCommandeClientRepository){
+                              LigneCommandeClientRepository ligneCommandeClientRepository) {
         this.articleRepository = articleRepository;
         this.ligneVenteRepository = ligneVenteRepository;
         this.ligneCommandeClientRepository = ligneCommandeClientRepository;
@@ -43,35 +47,35 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDto save(ArticleDto articleDto) {
         List<String> errors = ArticleValidator.validate(articleDto);
-        if(!errors.isEmpty()){
-            log.error("Article is not valid {}",articleDto);
-            throw new InvalidEntityException("l'article n'est pas valide",ErrorCodes.ARTICLE_NOT_VALID,errors);
+        if (!errors.isEmpty()) {
+            log.error("Article is not valid {}", articleDto);
+            throw new InvalidEntityException("l'article n'est pas valide", ErrorCodes.ARTICLE_NOT_VALID, errors);
         }
         return ArticleDto.fromEntity(articleRepository.save(ArticleDto.toEntity(articleDto)));
     }
 
     @Override
     public ArticleDto findById(Long articleId) {
-        if(articleId == null){
+        if (articleId == null) {
             log.error("Article id is null");
             return null;
         }
         Optional<Article> article = articleRepository.findById(articleId);
         ArticleDto articleDto = ArticleDto.fromEntity(article.get());
-        return Optional.of(articleDto).orElseThrow( () ->
-                new EntityNotFoundException("Aucun article avec l' Id"+ articleId+"dans la base",ErrorCodes.ARTICLE_NOT_FOUND));
+        return Optional.of(articleDto).orElseThrow(() ->
+                new EntityNotFoundException("Aucun article avec l' Id" + articleId + "dans la base", ErrorCodes.ARTICLE_NOT_FOUND));
     }
 
     @Override
     public ArticleDto findByCodeArticle(String codeArticle) {
-        if(codeArticle == null){
+        if (codeArticle == null) {
             log.error("Article code is null");
             return null;
         }
         Optional<Article> article = articleRepository.findByCodeArticle(codeArticle);
         ArticleDto articleDto = ArticleDto.fromEntity(article.get());
-        return Optional.of(articleDto).orElseThrow( () ->
-                new EntityNotFoundException("Aucun article avec l' code "+ codeArticle+"dans la base",ErrorCodes.ARTICLE_NOT_FOUND));
+        return Optional.of(articleDto).orElseThrow(() ->
+                new EntityNotFoundException("Aucun article avec l' code " + codeArticle + "dans la base", ErrorCodes.ARTICLE_NOT_FOUND));
     }
 
     //mapping 5ater traja3 liste
@@ -81,13 +85,28 @@ public class ArticleServiceImpl implements ArticleService {
     public List<ArticleDto> findAll() {
         return articleRepository.findAll().stream()
                 .map(ArticleDto::fromEntity)
-                .collect(Collectors.toList());    }
+                .collect(Collectors.toList());
+    }
 
     @Override
     public void delete(Long articleId) {
-        if(articleId == null){
+        if (articleId == null) {
             log.error("Article id is null");
             return;//por quitter la méthode
+        }
+        List<LigneComandeClient> ligneCommandeClients = ligneCommandeClientRepository.findAllByArticleId(articleId);
+        if (!ligneCommandeClients.isEmpty()) {
+            throw new InvalidOperationException("Impossible de supprimer un article deja utilise dans des commandes client", ErrorCodes.ARTICLE_ALREADY_IN_USE);
+        }
+        List<LigneComandeFournisseur> ligneCommandeFournisseurs = ligneCommandeFournisseurRepository.findAllByArticleId(articleId);
+        if (!ligneCommandeFournisseurs.isEmpty()) {
+            throw new InvalidOperationException("Impossible de supprimer un article deja utilise dans des commandes fournisseur",
+                    ErrorCodes.ARTICLE_ALREADY_IN_USE);
+        }
+        List<LigneVente> ligneVentes = ligneVenteRepository.findAllByArticleId(articleId);
+        if (!ligneVentes.isEmpty()) {
+            throw new InvalidOperationException("Impossible de supprimer un article deja utilise dans des ventes",
+                    ErrorCodes.ARTICLE_ALREADY_IN_USE);
         }
         articleRepository.deleteById(articleId);
     }

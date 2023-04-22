@@ -31,6 +31,6 @@ public class Client extends AbstractEntity{
     @Column(name = "identreprise")
     private Integer idEntreprise;
 
-    @OneToMany(mappedBy = "clientId")
+    @OneToMany(mappedBy = "client")
     private List<CommandeClient> commandeClientList;
 }

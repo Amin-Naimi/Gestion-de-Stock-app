@@ -136,6 +136,10 @@ public class CommandeFournisseurServiceImpl implements CommandeFournisseurServic
         if (id == null) {
             log.error("Commande fournisseur ID is NULL");
             return;
+        } List<LigneComandeFournisseur> ligneComandeFournisseurs = ligneCommandeFournisseurRepository.findAllByCommandeFournisseurId(id);
+        if (!ligneComandeFournisseurs.isEmpty()) {
+            throw new InvalidOperationException("Impossible de supprimer une commande Fournisseur deja utilisee",
+                    ErrorCodes.COMMANDE_FOURNISSEUR_ALREADY_IN_USE);
         }
         commandeFournisseurRepository.deleteById(id);
     }
