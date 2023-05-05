@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  background-color: #eff2f5 !important;
+   margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+   .backgroung-grey {
+    background-color: #eff2f5 !important;
+  }
+
+  .border-none {
+    border: none !important;
+  }
+  .min-height-80 {
+    min-height: 80px;
+  }
