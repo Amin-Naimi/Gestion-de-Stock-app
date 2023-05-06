@@ -1,17 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
 body {
   background-color: #eff2f5 !important;
-   margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+}
 
-   .backgroung-grey {
-    background-color: #eff2f5 !important;
-  }
+.backgroung-grey {
+  background-color: #eff2f5 !important;
+}
+.border-none {
+  border: none !important;
+}
 
-  .border-none {
-    border: none !important;
+.min-height-80 {
+  min-height: 80px;
+}
+
+.border-right {
+  border-right: solid #eff2f5;
+}
+.custom-border-right {
+  border: solid #eff2f5;
+  border-radius: 5px;
+}
+.custom-border {
+  border: solid #9ca1a6;
+  border-radius: 5px;
+}
+.blue-color {
+  color: #037bfe;
+}
+
+.hidden {
+  display: none;
+}
+
+.loader-overlay {
+  position: absolute;
+  width: 100%;
+  z-index: 500000;
+  top: 0;
+}
+
+.loader {
+  height: 10px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #FFF;
+}
+
+.loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 10px;
+  background-color: #007bff;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
   }
-  .min-height-80 {
-    min-height: 80px;
+  50% {
+    width: 30%;
   }
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+#posts {
+  margin: 20px 0;
+  list-style-type: none;
+}
+
+#about {
+  margin: 20px;
+}
+
+.alerts {
+  margin: 20px 0;
+  color: red;
+}

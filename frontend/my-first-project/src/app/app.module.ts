@@ -15,6 +15,8 @@ import { DashboardComponent } from './_Dashboard/dashboard/dashboard.component';
 import { StatistiqueComponent } from './_Dashboard/statistique/statistique.component';
 import { MenuComponent } from './_Dashboard/components/menu/menu.component';
 import { HeaderComponent } from './_Dashboard/components/header/header.component';
+import { ArticlesComponent } from './_Dashboard/_Pages/articles/articles.component';
+import { DetailsArticlesComponent } from './_Dashboard/components/details-articles/details-articles.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { HeaderComponent } from './_Dashboard/components/header/header.component
     DashboardComponent,
     StatistiqueComponent,
     MenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    ArticlesComponent,
+    DetailsArticlesComponent
   ],
   imports: [
     BrowserModule,
