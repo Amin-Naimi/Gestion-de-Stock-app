@@ -1,0 +1,87 @@
+<div class="row mb-1 mr-0 custom-border">
+  <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 ">
+    <img src="assets/product.png" width="100px" height="100px">
+  </div>
+
+  <!--  Details article-->
+  <div class="col-md-5 custom-border-right mb-1 mt-1 ">
+    <div class="col">
+      <div class="row">
+        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
+        <div class="col-md-10"> nom </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
+        <div class="col-md-10">prenom </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"><i class="fas fa-phone-alt blue-color"></i></div>
+        <div class="col-md-10">numTel </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  details categorie-->
+  <div class="col-md-3 custom-border-right mb-1 mt-1 ">
+    <div class="col">
+      <div class="row">
+        <div class="col-md-1"><i class="fas fa-home blue-color"></i></div>
+        <div class="col-md-10"> clientFournisseur.adresse?.adresse1 &nbsp; clientFournisseur.adresse?.adresse2 </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"><i class="fas fa-map-marker-alt blue-color"></i></div>
+        <div class="col-md-10"> clientFournisseur.adresse?.codePostale &nbsp; clientFournisseur.adresse?.ville </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"><i class="fas fa-globe-europe blue-color"></i></div>
+        <div class="col-md-10"> clientFournisseur.adresse?.pays </div>
+      </div>
+    </div>
+  </div>
+
+  <!--  boutons action-->
+  <div class="col-md-3 mb-1 mt-1 ">
+    <div class="row">
+      <div class="col-md-4">
+        <button type="button" class="btn btn-link">
+          <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDelete'">
+          <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
+        </button>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-link ">
+          <i class="far fa-list-alt"></i>&nbsp;Details
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+       aria-labelledby="staticBackdropLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Confirmation</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Etes vous-sur de vouloir supprimer ce ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="fas fa-ban"></i>&nbsp;Annuler</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            <i class="fas fa-trash-alt"></i>&nbsp;Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,15 @@ import { MenuComponent } from './_Dashboard/components/menu/menu.component';
 import { HeaderComponent } from './_Dashboard/components/header/header.component';
 import { ArticlesComponent } from './_Dashboard/_Pages/articles/articles.component';
 import { DetailsArticlesComponent } from './_Dashboard/components/details-articles/details-articles.component';
+import { PaginationComponent } from './_Dashboard/components/pagination/pagination.component';
+import { ButtonActionComponent } from './_Dashboard/components/button-action/button-action.component';
+import { NewArticleComponent } from './_Dashboard/_Pages/articles/new-article/new-article.component';
+import { MvtStkComponent } from './_Dashboard/_Pages/MovmentDeStocke/mvt-stk/mvt-stk.component';
+import { DetailsMvtstkArticlesComponent } from './_Dashboard/components/details-mvtstk-articles/details-mvtstk-articles.component';
+import { DetailsMvtstkComponent } from './_Dashboard/components/details-mvtstk/details-mvtstk.component';
+import { DetailsClFrsComponent } from './_Dashboard/components/details-cl-frs/details-cl-frs.component';
+import { ClientsComponent } from './_Dashboard/_Pages/clients/clients/clients.component';
+import { FournisseursComponent } from './_Dashboard/_Pages/fournisseurs/fournisseurs/fournisseurs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +37,16 @@ import { DetailsArticlesComponent } from './_Dashboard/components/details-articl
     MenuComponent,
     HeaderComponent,
     ArticlesComponent,
-    DetailsArticlesComponent
+    DetailsArticlesComponent,
+    PaginationComponent,
+    ButtonActionComponent,
+    NewArticleComponent,
+    MvtStkComponent,
+    DetailsMvtstkArticlesComponent,
+    DetailsMvtstkComponent,
+    DetailsClFrsComponent,
+    ClientsComponent,
+    FournisseursComponent
   ],
   imports: [
     BrowserModule,

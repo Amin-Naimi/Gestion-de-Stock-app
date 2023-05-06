@@ -3,32 +3,24 @@
     <div class="col-md-8 p-0">
       <h1>Liste des articles</h1>
     </div>
-
     <div class="col-md-4 text-right">
-      les buttons
-     <!---<app-boutton-action
-        (clickEvent)="nouvelArticle()"
-      ></app-boutton-action>
+      <app-button-action></app-button-action>
     </div>
-    <div class="alert alert-danger" *ngIf="errorMsg">
+   <!--<div class="alert alert-danger" *ngIf="errorMsg">
       {{ errorMsg }}
     </div>-->
   </div>
-
   <div class="col m-3">
     <app-details-articles></app-details-articles>
     <app-details-articles></app-details-articles>
     <app-details-articles></app-details-articles>
     <app-details-articles></app-details-articles>
-  </div>
 
-  <div class="row">
-  pagination
-  <!--<div class="row mb-3" *ngIf="listArticle.length">
+  </div>
+  <div class="row mb-3">
     <div class=" col-md-12 text-center">
       <app-pagination></app-pagination>
     </div>
-  </div>-->
-</div>
+  </div>
 
 </div>

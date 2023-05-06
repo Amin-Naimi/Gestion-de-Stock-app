@@ -1,0 +1,62 @@
+<div class="col mb-3">
+  <div class="col-md-12 mb-3 mt-3">
+    <button  style="background-color: transparent; border: none;">
+      <img src="assets/product.png" class="rounded-circle" width="200px" height="200px" />
+      <input hidden type="file" #fileInput>
+    </button>
+  </div>
+  <hr>
+  <div class="col-md-12">
+    <div class="col-md-12 mb-3">
+      <h2><i class="fas fa-info-circle blue-color"></i>&nbsp;Information de l'article</h2>
+    </div>
+    <div class="col-md-12">
+      <!-- <div class="alert alert-danger" *ngIf="errorMsg.length > 0">
+       <div *ngFor="let msg of errorMsg">
+          <span >{{msg}}</span>
+        </div>
+      </div>-->
+      <form>
+        <div class="row mb-3">
+          <div class="col">
+            <input type="text" class="form-control" name="codearticle" placeholder="Code article">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" name="designation" placeholder="Designation" >
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <input type="text" class="form-control" name="prixunitht" placeholder="Prix unitaire HT"
+                 >
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" name="tauxtva" placeholder="Taux TVA"
+                >
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <input type="text" class="form-control" name="prixunitttc" placeholder="Prix unitaire TTC" >
+          </div>
+          <div class="col">
+            <select class="form-control" name="cat">
+              <option [value]="null">Selectionner une categorie</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-12" style="text-align: right;">
+    <button class="btn btn-danger mr-3">
+      <i class="fas fa-ban"></i>&nbsp;
+      Annuler
+    </button>
+    <button class="btn btn-primary" >
+      <i class="fas fa-save"></i>&nbsp;
+      Enregitrer
+    </button>
+  </div>
+
+</div>
