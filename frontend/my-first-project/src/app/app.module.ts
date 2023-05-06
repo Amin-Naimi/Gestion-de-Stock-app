@@ -14,6 +14,7 @@ import { InscireComponent } from './inscire/inscire.component';
 import { DashboardComponent } from './_Dashboard/dashboard/dashboard.component';
 import { StatistiqueComponent } from './_Dashboard/statistique/statistique.component';
 import { MenuComponent } from './_Dashboard/components/menu/menu.component';
+import { HeaderComponent } from './_Dashboard/components/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { MenuComponent } from './_Dashboard/components/menu/menu.component';
     InscireComponent,
     DashboardComponent,
     StatistiqueComponent,
-    MenuComponent
+    MenuComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,27 @@
-<div class="accordion" id="accordionExample">
+<div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item" *ngFor="let menu of menuProperties">
-    <div class="card-header" id="{{menu.id}}">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        {{menu.titre}}
-      </button>
-    </h2>
+    <div id="menu{{menu.id}}">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false"
+          aria-controls="flush-collapseOne" [attr.data-bs-target]="'#flush-collapseOne' + menu.id">
+          <i class="{{menu.icone}}"></i>&nbsp;
+          {{menu.titre}}
+        </button>
+      </h2>
     </div>
+    <div id="flush-collapseOne{{menu.id}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'menu' + menu.id"
+      data-bs-parent="#accordionFlushExample">
 
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let sousMenu of menu.sousMenus">
+            <a href="javascript:void(0);" (click)="navigate(sousMenu.url)" style="color: inherit; text-decoration:none;">
+              <i class="{{sousMenu.icone}}"></i>&nbsp;
+              {{sousMenu.titre}}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-
 </div>

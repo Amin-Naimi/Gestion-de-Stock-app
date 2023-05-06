@@ -1,120 +1,127 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Menu } from './menu';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
-  public menuProperties : Array<Menu> =[
-   {
+  public menuProperties: Array<Menu> = [
+    {
     id: '1',
-    icone:'',
-    titre:'Tableau de bord',
+    titre: 'Tableau de bord',
+    icone: 'fas fa-chart-line',
     url: '',
-    sousMenus:[
+    sousMenus: [
       {
         id: '1.1',
-        icone:"",
-        titre:"Vue d'ensembele",
-        url: '',
+        titre: 'Vue d\'ensemble',
+        icone: 'fas fa-chart-pie',
+        url: ''
       },
       {
         id: '1.2',
-        icone:"",
-        titre:"Statistique",
-        url: '',
+        titre: 'Statistiques',
+        icone: 'fas fa-chart-bar',
+        url: 'statistique'
       }
-
     ]
   },
-  {
-    id: '2',
-    icone:'',
-    titre:'Article',
-    url: '',
-    sousMenus:[
-      {
-        id: '2.1',
-        icone:"",
-        titre:"Articles",
-        url: '',
-      },
-      {
-        id: '2.2',
-        icone:"",
-        titre:"Mouvements de stock",
-        url: '',
-      }
+    {
+      id: '2',
+      titre: 'Articles',
+      icone: 'fas fa-boxes',
+      url: '',
+      sousMenus: [
+        {
+          id: '2.1',
+          titre: 'Articles',
+          icone: 'fas fa-boxes',
+          url: 'articles'
+        },
+        {
+          id: '2.2',
+          titre: 'Mouvements du stock',
+          icone: 'fab fa-stack-overflow',
+          url: 'mvtstk'
+        }
+      ]
+    },
+    {
+      id: '3',
+      titre: 'Clients',
+      icone: 'fas fa-users',
+      url: '',
+      sousMenus: [
+        {
+          id: '3.1',
+          titre: 'Clients',
+          icone: 'fas fa-users',
+          url: 'clients'
+        },
+        {
+          id: '3.2',
+          titre: 'Commandes clients',
+          icone: 'fas fa-shopping-basket',
+          url: 'commandesclient'
+        }
+      ]
+    },
+    {
+      id: '4',
+      titre: 'Fournisseurs',
+      icone: 'fas fa-users',
+      url: '',
+      sousMenus: [
+        {
+          id: '4.1',
+          titre: 'Fournisseurs',
+          icone: 'fas fa-users',
+          url: 'fournisseurs'
+        },
+        {
+          id: '4.2',
+          titre: 'Commandes fournisseurs',
+          icone: 'fas fa-truck',
+          url: 'commandesfournisseur'
+        }
+      ]
+    },
+    {
+      id: '5',
+      titre: 'Parametrages',
+      icone: 'fas fa-cogs',
+      url: '',
+      sousMenus: [
+        {
+          id: '5.1',
+          titre: 'Categories',
+          icone: 'fas fa-tools',
+          url: 'categories'
+        },
+        {
+          id: '5.2',
+          titre: 'Utilisateurs',
+          icone: 'fas fa-users-cog',
+          url: 'utilisateurs'
+        }
+      ]
+    }
+  ];
 
-    ]
-  },
-  {
-    id: '3',
-    icone:'',
-    titre:'Clients',
-    url: '',
-    sousMenus:[
-      {
-        id: '3.1',
-        icone:"",
-        titre:"Clients",
-        url: '',
-      },
-      {
-        id: '3.2',
-        icone:"",
-        titre:"Commandes clients",
-        url: '',
-      }
+  private lastSelectedMenu: Menu | undefined;
+  constructor(
+    private router: Router
+  ) { }
 
-    ]
-  },
-  {
-    id: '4',
-    icone:'',
-    titre:'Fournisseurs',
-    url: '',
-    sousMenus:[
-      {
-        id: '4.1',
-        icone:"",
-        titre:"Fournisseurs",
-        url: '',
-      },
-      {
-        id: '4.2',
-        icone:"",
-        titre:"Commandes Fournisseurs",
-        url: '',
-      }
+  ngOnInit(): void {
+  }
 
-    ]
-  },
-  {
-    id: '5',
-    icone:'',
-    titre:'Pramétrage',
-    url: '',
-    sousMenus:[
-      {
-        id: '5.1',
-        icone:"",
-        titre:"Categories",
-        url: '',
-      },
-      {
-        id: '5.2',
-        icone:"",
-        titre:"Utilisateurs",
-        url: '',
-      }
-
-    ]
-  },
-
-  ]
+  navigate(url?: string): void {
+    this.router.navigate([url]);
+  }
 
 }
