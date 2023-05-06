@@ -12,6 +12,10 @@ import { FournisseursComponent } from './_Dashboard/_Pages/fournisseurs/fourniss
 import { NewCltFrsComponent } from './_Dashboard/components/new-clt-frs/new-clt-frs.component';
 import { PageCmdCltFrsComponent } from './_Dashboard/_Pages/comande/page-cmd-clt-frs/page-cmd-clt-frs.component';
 import { NewCmdCltFrsComponent } from './_Dashboard/components/new-cmd-clt-frs/new-cmd-clt-frs.component';
+import { CategoriesComponent } from './_Dashboard/_Pages/categories/categories/categories.component';
+import { NewCategoriesComponent } from './_Dashboard/_Pages/categories/new-categories/new-categories.component';
+import { UtilisateursComponent } from './_Dashboard/_Pages/utilisateurs/utilisateurs/utilisateurs.component';
+import { NewUtilisteurComponent } from './_Dashboard/_Pages/utilisateurs/new-utilisteur/new-utilisteur.component';
 
 
 const routes: Routes = [
@@ -34,6 +38,13 @@ const routes: Routes = [
       { path: "commandefournissuer", component: PageCmdCltFrsComponent},
       { path: "newcommandeclient", component: NewCmdCltFrsComponent},
       { path: "newcommandefournisseur", component: NewCmdCltFrsComponent},
+      { path: "categories", component: CategoriesComponent},
+      { path: "newcategorie", component: NewCategoriesComponent},
+      { path: "utilisateur", component: UtilisateursComponent},
+      { path: "newutilisateur", component: NewUtilisteurComponent},
+
+
+
 
 
 

@@ -31,6 +31,11 @@ import { DetailsCmdCltFrsComponent } from './_Dashboard/components/details-cmd-c
 import { DetailsCmdComponent } from './_Dashboard/components/details-cmd/details-cmd.component';
 import { PageCmdCltFrsComponent } from './_Dashboard/_Pages/comande/page-cmd-clt-frs/page-cmd-clt-frs.component';
 import { NewCmdCltFrsComponent } from './_Dashboard/components/new-cmd-clt-frs/new-cmd-clt-frs.component';
+import { CategoriesComponent } from './_Dashboard/_Pages/categories/categories/categories.component';
+import { NewCategoriesComponent } from './_Dashboard/_Pages/categories/new-categories/new-categories.component';
+import { UtilisateursComponent } from './_Dashboard/_Pages/utilisateurs/utilisateurs/utilisateurs.component';
+import { NewUtilisteurComponent } from './_Dashboard/_Pages/utilisateurs/new-utilisteur/new-utilisteur.component';
+import { DetailUtilisateurComponent } from './_Dashboard/components/detail-utilisateur/detail-utilisateur.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +61,12 @@ import { NewCmdCltFrsComponent } from './_Dashboard/components/new-cmd-clt-frs/n
     DetailsCmdCltFrsComponent,
     DetailsCmdComponent,
     PageCmdCltFrsComponent,
-    NewCmdCltFrsComponent
+    NewCmdCltFrsComponent,
+    CategoriesComponent,
+    NewCategoriesComponent,
+    UtilisateursComponent,
+    NewUtilisteurComponent,
+    DetailUtilisateurComponent
   ],
   imports: [
     BrowserModule,

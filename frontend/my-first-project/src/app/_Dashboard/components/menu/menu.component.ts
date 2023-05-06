@@ -106,7 +106,7 @@ export class MenuComponent implements OnInit {
           id: '5.2',
           titre: 'Utilisateurs',
           icone: 'fas fa-users-cog',
-          url: 'utilisateurs'
+          url: 'utilisateur'
         }
       ]
     }
