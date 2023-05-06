@@ -9,6 +9,8 @@ import { NewArticleComponent } from './_Dashboard/_Pages/articles/new-article/ne
 import { MvtStkComponent } from './_Dashboard/_Pages/MovmentDeStocke/mvt-stk/mvt-stk.component';
 import { ClientsComponent } from './_Dashboard/_Pages/clients/clients/clients.component';
 import { FournisseursComponent } from './_Dashboard/_Pages/fournisseurs/fournisseurs/fournisseurs.component';
+import { NewCltFrsComponent } from './_Dashboard/components/new-clt-frs/new-clt-frs.component';
+import { PageCmdCltFrsComponent } from './_Dashboard/_Pages/comande/page-cmd-clt-frs/page-cmd-clt-frs.component';
 
 
 const routes: Routes = [
@@ -25,6 +27,13 @@ const routes: Routes = [
       { path: "mvtstk", component: MvtStkComponent},
       { path: "client", component: ClientsComponent},
       { path: "fournisseurs", component: FournisseursComponent},
+      { path: "newclient", component: NewCltFrsComponent},
+      { path: "newfournisseur", component: NewCltFrsComponent},
+      { path: "commandeclient", component: PageCmdCltFrsComponent},
+      { path: "commandefournissuer", component: PageCmdCltFrsComponent},
+
+
+
 
 
 

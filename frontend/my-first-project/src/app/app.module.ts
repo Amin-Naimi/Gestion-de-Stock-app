@@ -26,6 +26,10 @@ import { DetailsMvtstkComponent } from './_Dashboard/components/details-mvtstk/d
 import { DetailsClFrsComponent } from './_Dashboard/components/details-cl-frs/details-cl-frs.component';
 import { ClientsComponent } from './_Dashboard/_Pages/clients/clients/clients.component';
 import { FournisseursComponent } from './_Dashboard/_Pages/fournisseurs/fournisseurs/fournisseurs.component';
+import { NewCltFrsComponent } from './_Dashboard/components/new-clt-frs/new-clt-frs.component';
+import { DetailsCmdCltFrsComponent } from './_Dashboard/components/details-cmd-clt-frs/details-cmd-clt-frs.component';
+import { DetailsCmdComponent } from './_Dashboard/components/details-cmd/details-cmd.component';
+import { PageCmdCltFrsComponent } from './_Dashboard/_Pages/comande/page-cmd-clt-frs/page-cmd-clt-frs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +50,11 @@ import { FournisseursComponent } from './_Dashboard/_Pages/fournisseurs/fourniss
     DetailsMvtstkComponent,
     DetailsClFrsComponent,
     ClientsComponent,
-    FournisseursComponent
+    FournisseursComponent,
+    NewCltFrsComponent,
+    DetailsCmdCltFrsComponent,
+    DetailsCmdComponent,
+    PageCmdCltFrsComponent
   ],
   imports: [
     BrowserModule,
