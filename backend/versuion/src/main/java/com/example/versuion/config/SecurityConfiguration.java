@@ -42,6 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/auth/authentification",
                         "/**/utilisateurs/create",
                         "/**/articles/create",
+                        "/**/entreprises/create",
                         "/**/categories/**",
                         "/v2/api-docs",
                         "/swagger-resources",
