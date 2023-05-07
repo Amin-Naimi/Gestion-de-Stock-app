@@ -18,6 +18,7 @@ import { UtilisateursComponent } from './_Dashboard/_Pages/utilisateurs/utilisat
 import { NewUtilisteurComponent } from './_Dashboard/_Pages/utilisateurs/new-utilisteur/new-utilisteur.component';
 import { ProfileComponent } from './_Dashboard/_Pages/profile/profile/profile.component';
 import { ChangerMotDepasseComponent } from './_Dashboard/_Pages/profile/changer-mot-depasse/changer-mot-depasse.component';
+import { ApplicationGuard } from './auth/application.guard';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
 
   {
     path: "", component: DashboardComponent,
+    canActivate:[ApplicationGuard],
     children: [
       { path: 'statistique', component: StatistiqueComponent },
       { path: "articles", component: ArticlesComponent },
