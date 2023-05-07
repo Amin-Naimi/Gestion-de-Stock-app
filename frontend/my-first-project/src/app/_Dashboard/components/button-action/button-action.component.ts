@@ -7,12 +7,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonActionComponent {
 
- /* @Input()
+  @Input()
   isNouveauVisible = true;
   @Input()
   isExporterVisible = true;
   @Input()
-  isImporterVisible = true;*/
+  isImporterVisible = true;
 
   @Output()
   clickEvent = new EventEmitter();

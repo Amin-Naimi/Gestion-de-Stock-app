@@ -120,8 +120,13 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  navigate(url?: string): void {
-    this.router.navigate([url]);
+  navigate(menu: Menu): void {
+    if (this.lastSelectedMenu) {
+      this.lastSelectedMenu.active = false;
+    }
+    menu.active = true;
+    this.lastSelectedMenu = menu;
+    this.router.navigate([menu.url]);
   }
 
 }

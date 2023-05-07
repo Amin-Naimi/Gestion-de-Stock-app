@@ -36,6 +36,8 @@ import { NewCategoriesComponent } from './_Dashboard/_Pages/categories/new-categ
 import { UtilisateursComponent } from './_Dashboard/_Pages/utilisateurs/utilisateurs/utilisateurs.component';
 import { NewUtilisteurComponent } from './_Dashboard/_Pages/utilisateurs/new-utilisteur/new-utilisteur.component';
 import { DetailUtilisateurComponent } from './_Dashboard/components/detail-utilisateur/detail-utilisateur.component';
+import { ProfileComponent } from './_Dashboard/_Pages/profile/profile/profile.component';
+import { ChangerMotDepasseComponent } from './_Dashboard/_Pages/profile/changer-mot-depasse/changer-mot-depasse.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,9 @@ import { DetailUtilisateurComponent } from './_Dashboard/components/detail-utili
     NewCategoriesComponent,
     UtilisateursComponent,
     NewUtilisteurComponent,
-    DetailUtilisateurComponent
+    DetailUtilisateurComponent,
+    ProfileComponent,
+    ChangerMotDepasseComponent
   ],
   imports: [
     BrowserModule,

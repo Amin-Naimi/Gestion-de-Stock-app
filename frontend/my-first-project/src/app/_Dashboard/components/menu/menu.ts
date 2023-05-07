@@ -3,5 +3,6 @@ export interface Menu{
   titre?: string;
   icone?: string;
   url?: string;
+  active?: boolean;
   sousMenus?: Array<Menu>;
 }

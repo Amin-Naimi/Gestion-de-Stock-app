@@ -16,6 +16,8 @@ import { CategoriesComponent } from './_Dashboard/_Pages/categories/categories/c
 import { NewCategoriesComponent } from './_Dashboard/_Pages/categories/new-categories/new-categories.component';
 import { UtilisateursComponent } from './_Dashboard/_Pages/utilisateurs/utilisateurs/utilisateurs.component';
 import { NewUtilisteurComponent } from './_Dashboard/_Pages/utilisateurs/new-utilisteur/new-utilisteur.component';
+import { ProfileComponent } from './_Dashboard/_Pages/profile/profile/profile.component';
+import { ChangerMotDepasseComponent } from './_Dashboard/_Pages/profile/changer-mot-depasse/changer-mot-depasse.component';
 
 
 const routes: Routes = [
@@ -27,21 +29,60 @@ const routes: Routes = [
     path: "", component: DashboardComponent,
     children: [
       { path: 'statistique', component: StatistiqueComponent },
-      { path: "articles", component: ArticlesComponent},
-      { path: "newarticles", component: NewArticleComponent},
-      { path: "mvtstk", component: MvtStkComponent},
-      { path: "client", component: ClientsComponent},
-      { path: "fournisseurs", component: FournisseursComponent},
-      { path: "newclient", component: NewCltFrsComponent},
-      { path: "newfournisseur", component: NewCltFrsComponent},
-      { path: "commandeclient", component: PageCmdCltFrsComponent},
-      { path: "commandefournissuer", component: PageCmdCltFrsComponent},
-      { path: "newcommandeclient", component: NewCmdCltFrsComponent},
-      { path: "newcommandefournisseur", component: NewCmdCltFrsComponent},
-      { path: "categories", component: CategoriesComponent},
-      { path: "newcategorie", component: NewCategoriesComponent},
-      { path: "utilisateur", component: UtilisateursComponent},
-      { path: "newutilisateur", component: NewUtilisteurComponent},
+      { path: "articles", component: ArticlesComponent },
+      { path: "newarticles", component: NewArticleComponent },
+      { path: "mvtstk", component: MvtStkComponent },
+      { path: "client", component: ClientsComponent },
+      { path: "fournisseurs", component: FournisseursComponent },
+
+      {
+        path: "newclient", component: NewCltFrsComponent,
+        data: {
+          origin: 'client'
+        }
+      },
+      {
+        path: "newfournisseur", component: NewCltFrsComponent,
+        data: {
+          origin: 'forunisseur'
+        }
+      },
+
+      {
+        path: "commandeclient", component: PageCmdCltFrsComponent,
+        data: {
+          origin: 'client'
+        }
+      },
+
+      {
+        path: "commandefournissuer", component: PageCmdCltFrsComponent,
+        data: {
+          origin: 'forunisseur'
+        },
+      },
+
+      {
+        path: "newcommandeclient", component: NewCmdCltFrsComponent,
+        data: {
+          origin: 'client'
+        }
+      },
+
+      {
+        path: "newcommandefournisseur", component: NewCmdCltFrsComponent,
+        data: {
+          origin: 'forunisseur'
+        }
+      },
+      { path: "categories", component: CategoriesComponent },
+      { path: "newcategorie", component: NewCategoriesComponent },
+      { path: "utilisateur", component: UtilisateursComponent },
+      { path: "newutilisateur", component: NewUtilisteurComponent },
+      { path: "profile", component: ProfileComponent },
+      { path: "changermotdepasse", component: ChangerMotDepasseComponent },
+
+
 
 
 
