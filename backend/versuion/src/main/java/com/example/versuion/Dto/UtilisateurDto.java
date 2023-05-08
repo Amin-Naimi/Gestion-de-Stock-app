@@ -20,7 +20,7 @@ public class UtilisateurDto {
 
     private String email;
 
-    private Instant dateDeNaissance;
+    private String dateDeNaissance;
 
     private String motDePasse;
 

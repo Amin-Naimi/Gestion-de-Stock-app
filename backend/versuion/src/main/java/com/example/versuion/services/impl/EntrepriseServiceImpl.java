@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,7 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 
         UtilisateurDto utilisateurParDfaut = fromEntreprise(savedEntreprise);
 
+        utilisateurParDfaut.setDateDeNaissance("pas encore");
         UtilisateurDto savedUser = utilisateurService.save(utilisateurParDfaut);
 
         RoleDto rolesDto = RoleDto.builder()
