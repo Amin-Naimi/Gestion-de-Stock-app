@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { AdresseDto } from '../Models/AdresseDto';
 import { EntrepriseDto } from '../Models/EntrepriseDto';
-import { EntrepriseService } from '../services/entreprise.service';
 import { UserService } from '../services/user.service';
 import { AuthenticationRequest } from '../Models/AuthenticationRequest';
 import { Router } from '@angular/router';
+import { EnServiceService } from '../services/en-service.service';
 
 @Component({
   selector: 'app-inscire',
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./inscire.component.css']
 })
 export class InscireComponent {
-  constructor(private entrepriseService: EntrepriseService
+  constructor(private entrepriseService: EnServiceService
     ,private userService : UserService,
     private router:Router){}
 
@@ -20,15 +20,20 @@ export class InscireComponent {
   adresse: AdresseDto = {};
   errorsMsg: Array<string> = [];
 
-  inscrire(){
+  inscrire():void{
     this.entrepriseDto.adresse = this.adresse;
-    this.entrepriseService.sinscrire(this.entrepriseDto).subscribe(
+    console.log(this.entrepriseDto);
+    this.entrepriseService.save(this.entrepriseDto).subscribe(
       (response:EntrepriseDto)=>{
         console.log("responce" + response);
+        this.errorsMsg = [];
+        this.connectEntreprise();
+
       },
       (error)=>{
+        console.log(error);
         this.errorsMsg = error.error.errors;
-        console.log("error" + this.errorsMsg);
+        console.log("error " + this.errorsMsg);
       }
     )
   }
@@ -42,8 +47,8 @@ export class InscireComponent {
     .subscribe(response => {
       this.userService.setAccessToken(response);
       //this.getUserByEmail(authenticationRequest.login);
-      localStorage.setItem('origin', 'inscription');
-      this.router.navigate(['changermotdepasse']);
+      //localStorage.setItem('origin', 'inscription');
+      this.router.navigate(['/changermotdepasse']);
     });
   }
 

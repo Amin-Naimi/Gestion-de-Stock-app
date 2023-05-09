@@ -37,4 +37,9 @@ public class EntrepriseControlleur implements EntrepriseApi {
     public void delete(Long id) {
         entrepriseService.delete(id);
     }
+
+    @Override
+    public String getMessage() {
+        return "Hellow Mohamed Amin Naimi";
+    }
 }

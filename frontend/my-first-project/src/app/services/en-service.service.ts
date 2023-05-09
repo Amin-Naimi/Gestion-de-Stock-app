@@ -8,7 +8,7 @@ import { EntrepriseDto } from '../Models/EntrepriseDto';
 })
 export class EnServiceService {
 
-  APP_URL = 'http://localhost:8081/gestiondestock';
+  APP_URL = 'http://localhost:8089/gestiondestock';
 
   requestHeader = new HttpHeaders(
     { "No-Auth": "True" }
@@ -20,5 +20,9 @@ export class EnServiceService {
 
   save(entreprise: EntrepriseDto): Observable<EntrepriseDto> {
     return this.http.post<EntrepriseDto>(`${this.entrepriseEndpoint}/create`, entreprise, { headers: this.requestHeader });
+  }
+
+  testInterceptor():Observable<string>{
+    return this.http.get<string>("http://localhost:8089/message");
   }
 }

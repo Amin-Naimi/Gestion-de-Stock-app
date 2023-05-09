@@ -38,6 +38,7 @@ import { NewUtilisteurComponent } from './_Dashboard/_Pages/utilisateurs/new-uti
 import { DetailUtilisateurComponent } from './_Dashboard/components/detail-utilisateur/detail-utilisateur.component';
 import { ProfileComponent } from './_Dashboard/_Pages/profile/profile/profile.component';
 import { ChangerMotDepasseComponent } from './_Dashboard/_Pages/profile/changer-mot-depasse/changer-mot-depasse.component';
+import { AuthInterceptor } from './auth/intercptor/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,11 @@ import { ChangerMotDepasseComponent } from './_Dashboard/_Pages/profile/changer-
     HttpClientModule,
     RouterModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

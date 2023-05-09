@@ -21,4 +21,7 @@ public interface EntrepriseApi {
 
     @DeleteMapping(ENTREPRISE_ENDPOINT + "/delete/{idEntreprise}")
     void delete(@PathVariable("idEntreprise") Long id);
+
+    @GetMapping("/message")
+    public String getMessage();
 }
