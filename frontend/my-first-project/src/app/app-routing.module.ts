@@ -27,14 +27,16 @@ const routes: Routes = [
   { path: "inscrire", component: InscireComponent },
 
   {
-    path: "", component: DashboardComponent,
-    canActivate:[ApplicationGuard],
+    path: '', component: DashboardComponent,
     children: [
-      { path: 'statistique', component: StatistiqueComponent ,
-      canActivate:[ApplicationGuard]
-    },
+      {
+        path: 'statistique', component: StatistiqueComponent,
+      },
 
-      { path: "articles", component: ArticlesComponent },
+      { path: "articles", component: ArticlesComponent,
+      canActivate: [ApplicationGuard],
+
+    },
       { path: "newarticles", component: NewArticleComponent },
       { path: "mvtstk", component: MvtStkComponent },
       { path: "client", component: ClientsComponent },
