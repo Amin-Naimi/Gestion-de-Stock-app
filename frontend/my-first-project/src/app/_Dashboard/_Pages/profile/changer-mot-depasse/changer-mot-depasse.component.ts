@@ -20,17 +20,6 @@ export class ChangerMotDepasseComponent implements OnInit {
       this.router.navigate(['/profile']);
     }
 
-    chaine = "";
-
-    getString():void{
-      this.enServiceService.testInterceptor().subscribe((responce : any) => {
-        console.log(responce);
-        this.chaine = responce;
-      },
-      (error :any) => {
-        console.log(error);
-      }
-      )
-    }
+   
 
 }

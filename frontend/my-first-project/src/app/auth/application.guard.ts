@@ -12,7 +12,7 @@ export class ApplicationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
      // return this.userService.isUserLoggedAndAccessTokenValid();
-     return true;
+     return false;
   }
 
 

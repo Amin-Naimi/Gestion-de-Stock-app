@@ -30,7 +30,10 @@ const routes: Routes = [
     path: "", component: DashboardComponent,
     canActivate:[ApplicationGuard],
     children: [
-      { path: 'statistique', component: StatistiqueComponent },
+      { path: 'statistique', component: StatistiqueComponent ,
+      canActivate:[ApplicationGuard]
+    },
+
       { path: "articles", component: ArticlesComponent },
       { path: "newarticles", component: NewArticleComponent },
       { path: "mvtstk", component: MvtStkComponent },
