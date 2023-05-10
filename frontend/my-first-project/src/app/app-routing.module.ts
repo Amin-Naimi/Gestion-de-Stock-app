@@ -28,15 +28,17 @@ const routes: Routes = [
 
   {
     path: '', component: DashboardComponent,
+    canActivate: [ApplicationGuard],
+
     children: [
       {
         path: 'statistique', component: StatistiqueComponent,
       },
 
-      { path: "articles", component: ArticlesComponent,
-      canActivate: [ApplicationGuard],
+      {
+        path: "articles", component: ArticlesComponent,
 
-    },
+      },
       { path: "newarticles", component: NewArticleComponent },
       { path: "mvtstk", component: MvtStkComponent },
       { path: "client", component: ClientsComponent },
@@ -88,17 +90,6 @@ const routes: Routes = [
       { path: "newutilisateur", component: NewUtilisteurComponent },
       { path: "profile", component: ProfileComponent },
       { path: "changermotdepasse", component: ChangerMotDepasseComponent },
-
-
-
-
-
-
-
-
-
-
-
 
     ]
   },

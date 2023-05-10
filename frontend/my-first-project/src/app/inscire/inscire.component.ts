@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { AuthenticationRequest } from '../Models/AuthenticationRequest';
 import { Router } from '@angular/router';
 import { EnServiceService } from '../services/en-service.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-inscire',
@@ -19,6 +20,8 @@ export class InscireComponent {
   entrepriseDto: EntrepriseDto = {};
   adresse: AdresseDto = {};
   errorsMsg: Array<string> = [];
+  authenticationRequest: AuthenticationRequest = {};
+
 
   inscrire():void{
     this.entrepriseDto.adresse = this.adresse;
@@ -46,16 +49,22 @@ export class InscireComponent {
     this.userService.login(authenticationRequest)
     .subscribe(response => {
       this.userService.setAccessToken(response);
-      //this.getUserByEmail(authenticationRequest.login);
-      //localStorage.setItem('origin', 'inscription');
+      this.getUserByEmail(authenticationRequest.login!);
+      console.log("Sette dans le locale storage");
+      localStorage.setItem('origin', 'inscription');
       this.router.navigate(['/changermotdepasse']);
+      console.log("localStorage length : " + localStorage.length)
     });
   }
 
- /* getUserByEmail(email?: string): void {
-    this.userService.getUserByEmail(email)
-    .subscribe(user => {
-      this.userService.setConnectedUser(user);
-    });
-  }*/
+
+  getUserByEmail(email: string): void{
+    this.userService.getUserByEmail(email).subscribe(
+      (response: any) => {
+        this.userService.setUtilisateur(response)
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      })
+  }
 }

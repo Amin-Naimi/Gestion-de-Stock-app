@@ -12,7 +12,7 @@ import { AuthenticationResponse } from 'src/app/Models/AuthenticationResponse';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let authenticationResponse: AuthenticationResponse = {};
@@ -20,12 +20,13 @@ export class AuthInterceptor implements HttpInterceptor {
       authenticationResponse = JSON.parse(
         localStorage.getItem('accessToken') as string
       );
-    }
       const authReq = request.clone({
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + authenticationResponse.accessToken
         })
       });
-    return next.handle(authReq);
+      return next.handle(authReq);
+    }
+    return next.handle(request);
   }
 }

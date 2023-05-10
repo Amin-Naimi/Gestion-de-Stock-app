@@ -3,7 +3,6 @@ import { AuthenticationRequest } from '../Models/AuthenticationRequest';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,7 @@ export class LoginComponent {
   errorMessage = '';
 
   constructor(
-    private userService : UserService,
+    private userService: UserService,
     private router: Router
   ) { }
 
@@ -24,23 +23,30 @@ export class LoginComponent {
   }
 
 
-  login(){
+  login() :void{
     this.userService.login(this.authenticationRequest).subscribe(
-      (response:any)=>{
+      (response: any) => {
         console.log(response);
         this.userService.setAccessToken(response);
+        this.getUSerByEmail();
         this.router.navigate(['']);
-
       },
-      (error)=>{
+      (error) => {
         this.errorMessage = 'Login et / ou mot de passe incorrecte';
         console.log(error);
       }
     );
-
   }
 
-
+  getUSerByEmail(){
+    this.userService.getUserByEmail(this.authenticationRequest.login!).subscribe(
+      (response: any) => {
+        this.userService.setUtilisateur(response)
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      })
+  }
 
 
 }
