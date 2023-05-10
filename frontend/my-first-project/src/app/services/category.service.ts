@@ -22,4 +22,14 @@ export class CategoryService {
   findAll(): Observable<Category[]>{
     return this.httpClient.get<Category[]>(`${this.APP_URL}/categories/all`);
   }
+
+  findById(idCategory: number): Observable<Category>{
+    return this.httpClient.get<Category>(`${this.APP_URL}/categories/${idCategory}`)
+  }
+
+  updateCategory(id: number, category : Category): Observable<Category>{
+    category.idEntreprise = this.userService.getConnectedUser()?.entreprise?.id;
+    return this.httpClient.put<Category>(`${this.APP_URL}/categories/update/${id}`,category);
+
+  }
 }

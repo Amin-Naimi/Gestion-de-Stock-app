@@ -51,19 +51,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDto update(Long id, CategoryDto categoryDto) {
+        log.info("Inside update category {}", id);
         Optional<Category> categoryOptional = categoryRepository.findById(id);
-        if(categoryOptional.isPresent()){
-            log.info("Category found with id {}",id);
-            CategoryDto categoryDtoUpdate = CategoryDto.fromEntity(categoryOptional.get());
-            categoryDtoUpdate.setCodeCategory(categoryDto.getCodeCategory());
-            categoryDtoUpdate.setDesignation(categoryDto.getDesignation());
-            categoryDtoUpdate.setIdEntreprise(categoryDto.getIdEntreprise());
-            categoryRepository.save(CategoryDto.toEntity(categoryDtoUpdate));
-            log.info("Category  with id {} updated",id);
-            return categoryDtoUpdate;
-        }
-        else {
-            log.info("Category with id {} not found",id);
+        if (categoryOptional.isPresent()) {
+            log.info("Category found with id {}", id);
+            Category category = categoryOptional.get();
+            category.setCodeCategory(categoryDto.getCodeCategory());
+            category.setDesignation(categoryDto.getDesignation());
+            category.setIdEntreprise(categoryDto.getIdEntreprise());
+            categoryRepository.save(category);
+            log.info("Category with id {} updated", id);
+            return CategoryDto.fromEntity(category);
+        } else {
+            log.info("Category with id {} not found", id);
             return null;
         }
     }

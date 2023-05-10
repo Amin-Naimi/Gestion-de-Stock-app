@@ -85,7 +85,20 @@ const routes: Routes = [
         }
       },
       { path: "categories", component: CategoriesComponent },
-      { path: "newcategorie", component: NewCategoriesComponent },
+      {
+        path: "newcategorie", component: NewCategoriesComponent,
+        data: {
+          origin: 'creationCategory'
+        }
+      },
+
+      {
+        path: "newcategorie/:idcategory", component: NewCategoriesComponent,
+        data: {
+          origin: 'updateCategory'
+        }
+      },
+
       { path: "utilisateur", component: UtilisateursComponent },
       { path: "newutilisateur", component: NewUtilisteurComponent },
       { path: "profile", component: ProfileComponent },

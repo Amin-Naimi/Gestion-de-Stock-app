@@ -32,5 +32,9 @@ export class CategoriesComponent implements OnInit {
     this.router.navigate(['newcategorie']);
   }
 
+  modifierCategory(id?: number): void {
+    this.router.navigate(['newcategorie', id]);
+  }
+
 
 }
