@@ -6,18 +6,12 @@ import { MvtStk } from "./MvtStk";
 
 export interface Article {
   id?: number;
-  creationDate?: number;
-  lastModifiedDate?: number;
   codeArticle?: string;
   designation?: string;
   prixUnitaireHt?: number;
   tauxTva?: number;
-  prixUnitaireTtc?: number;
+  prixUnitaireTTc?: number;
   photo?: string;
-  idEntreprise?: number;
   category?: Category;
-  ligneVentes?: Array<LigneVente>;
-  ligneCommandeClients?: Array<LigneCommandeClient>;
-  ligneCommandeFournisseurs?: Array<LigneCommandeFournisseur>;
-  mvtStks?: Array<MvtStk>;
+  idEntreprise?: number;
 }

@@ -3,8 +3,6 @@ import { Article } from "./Article";
 export interface MvtStk {
 
   id?: number;
-  creationDate?: number;
-  lastModifiedDate?: number;
   dateMvt?: number;
   quantite?: number;
   article?: Article;

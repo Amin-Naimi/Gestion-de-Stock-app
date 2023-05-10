@@ -3,12 +3,11 @@ import { LigneCommandeFournisseur } from "./LigneCommandeFournisseur";
 
 export interface CommandeFournisseur {
   id?: number;
-  creationDate?: number;
-  lastModifiedDate?: number;
   code?: string;
-  dateCommande?: number;
+  dateComande?: number;
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE';
-  idEntreprise?: number;
   fournisseur?: Fournisseur;
-  ligneCommandeFournisseurs?: Array<LigneCommandeFournisseur>;
+  idEntreprise?: number;
+  ligneComandeFournisseurList?: Array<LigneCommandeFournisseur>;
+  commandeLivree?: boolean;
 }

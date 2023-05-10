@@ -3,8 +3,6 @@ import { CommandeFournisseur } from "./CommandeFournisseur";
 
 export interface LigneCommandeFournisseur {
   id?: number;
-  creationDate?: number;
-  lastModifiedDate?: number;
   article?: Article;
   commandeFournisseur?: CommandeFournisseur;
   quantite?: number;
