@@ -11,12 +11,12 @@
     <!--<div class="row col-md-12 alert alert-danger" *ngIf="errorMsgs">
       {{ errorMsgs }}
     </div>-->
-    <div class="row col-md-12 custom-border mb-3 p-3" >
+    <div class="row col-md-12 custom-border mb-3 p-3" *ngFor="let category of listCategory">
       <div class="col-md-3 custom-border-right">
-      cat.code
+      {{category.codeCategory}}
       </div>
       <div class="col-md-4 custom-border-right">
-        cat.designation
+        {{category.designation}}
       </div>
       <div class="col-md-3">
         <div class="row">
@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  <div class="row mb-3" >
+  <div class="row mb-3" *ngIf="listCategory.length > 0">
     <div class=" col-md-12 text-center">
       <app-pagination></app-pagination>
     </div>
