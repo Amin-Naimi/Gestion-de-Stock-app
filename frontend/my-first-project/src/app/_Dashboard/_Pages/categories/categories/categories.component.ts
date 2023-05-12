@@ -13,6 +13,7 @@ export class CategoriesComponent implements OnInit {
   listCategory: Category[] = [];
   selectedCategoryId! : number;
   categoryName = "";
+  errorMsg  = "";
 
   constructor(private router: Router,
     private categoryService: CategoryService) { }
@@ -44,12 +45,12 @@ export class CategoriesComponent implements OnInit {
       console.log("Id category à supprimer : "+ this.selectedCategoryId)
       this.categoryService.deleteCategory(this.selectedCategoryId).subscribe(
         (responce :any)=>{
-          console.log("Delete category avec succès : "+ responce)
           this.router.navigate(['categories']);
           this.findAllCategories();
         },
         (error : any)=>{
-          console.log(error);
+          this.errorMsg = error.error.message;
+          console.log(this.errorMsg);
         })
     }
 

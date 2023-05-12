@@ -8,9 +8,9 @@
     </div>
   </div>
   <div class="col m-3">
-    <!--<div class="row col-md-12 alert alert-danger" *ngIf="errorMsgs">
-      {{ errorMsgs }}
-    </div>-->
+    <div class="row col-md-12 alert alert-danger" *ngIf="errorMsg">
+      {{ errorMsg }}
+    </div>
     <div class="row col-md-12 custom-border mb-3 p-3" *ngFor="let category of listCategory">
       <div class="col-md-3 custom-border-right">
       {{category.codeCategory}}

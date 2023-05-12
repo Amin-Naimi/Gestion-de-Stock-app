@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Utilisateur } from 'src/app/Models/Utilisateure';
 import { UserService } from 'src/app/services/user.service';
 
@@ -7,12 +7,15 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements DoCheck {
   connectedUser : Utilisateur = {};
   constructor(private userService: UserService){}
+  ngDoCheck(): void {
+    console.log("header component initialized")
+    this.connectedUser = this.userService.getConnectedUser()  }
 
   ngOnInit(): void {
-    this.connectedUser = this.userService.getConnectedUser()
+
    // console.log("connected user : " + this.connectedUser);
   }
 
