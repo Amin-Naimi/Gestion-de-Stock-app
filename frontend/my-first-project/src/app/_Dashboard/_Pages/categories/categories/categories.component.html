@@ -26,7 +26,7 @@
             </button>
           </div>
           <div class="col-md-4">
-            <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCat">
+            <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCat" (click)="selectedCategory(category.id!, category.codeCategory!)">
               <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
             </button>
           </div>
@@ -53,17 +53,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Confirmation</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Etes vous-sur de vouloir supprimer cette categorie?
+        Etes vous-sur de vouloir supprimer cette categorie : {{categoryName}}?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           <i class="fas fa-ban"></i>&nbsp;Annuler</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimer()">
           <i class="fas fa-trash-alt"></i>&nbsp;Supprimer</button>
       </div>
     </div>
