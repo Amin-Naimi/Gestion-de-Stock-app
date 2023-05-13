@@ -27,11 +27,13 @@
         </div>
         <div class="row mb-3">
           <div class="col">
-            <input type="text" class="form-control" name="prixunitht" placeholder="Prix unitaire HT" [(ngModel)]="article.prixUnitaire"
+            <input type="text" class="form-control" name="prixunitht" placeholder="Prix unitaire HT" (input)="claculerPrixTTC()"
+             [(ngModel)]="article.prixUnitaire"
                  >
           </div>
           <div class="col">
-            <input type="text" class="form-control" name="tauxtva" placeholder="Taux TVA" [(ngModel)]="article.tauxTva"
+            <input type="text" class="form-control" name="tauxtva" placeholder="Taux TVA" (input)="claculerPrixTTC()"
+            [(ngModel)]="article.tauxTva"
                 >
           </div>
         </div>

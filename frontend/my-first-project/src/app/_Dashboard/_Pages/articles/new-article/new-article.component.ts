@@ -77,6 +77,13 @@ export class NewArticleComponent implements OnInit {
 
   }
 
+  claculerPrixTTC(){
+    if (this.article.prixUnitaire && this.article.tauxTva) {
+      this.article.prixUnitaireTTc =
+        +this.article.prixUnitaire + (+(this.article.prixUnitaire * (this.article.tauxTva / 100)));
+    }
+  }
+
   cancel(): void {
     this.router.navigate(['articles']);
   }
