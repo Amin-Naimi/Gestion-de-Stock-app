@@ -8,10 +8,7 @@ import com.example.versuion.exception.EntityNotFoundException;
 import com.example.versuion.exception.ErrorCodes;
 import com.example.versuion.exception.InvalidEntityException;
 import com.example.versuion.exception.InvalidOperationException;
-import com.example.versuion.models.Article;
-import com.example.versuion.models.LigneComandeClient;
-import com.example.versuion.models.LigneComandeFournisseur;
-import com.example.versuion.models.LigneVente;
+import com.example.versuion.models.*;
 import com.example.versuion.repository.*;
 import com.example.versuion.services.ArticleService;
 import com.example.versuion.validator.ArticleValidator;
@@ -43,6 +40,7 @@ public class ArticleServiceImpl implements ArticleService {
         this.ligneCommandeClientRepository = ligneCommandeClientRepository;
         this.ligneCommandeFournisseurRepository = ligneCommandeFournisseurRepository;
     }
+    @Autowired CategoryRepository categoryRepository;
 
     @Override
     public ArticleDto save(ArticleDto articleDto) {
@@ -51,7 +49,12 @@ public class ArticleServiceImpl implements ArticleService {
             log.error("Article is not valid {}", articleDto);
             throw new InvalidEntityException("l'article n'est pas valide", ErrorCodes.ARTICLE_NOT_VALID, errors);
         }
-        return ArticleDto.fromEntity(articleRepository.save(ArticleDto.toEntity(articleDto)));
+        Long idCategory = articleDto.getCategory().getId();
+        Optional<Category> category = categoryRepository.findById(idCategory);
+        Article article = ArticleDto.toEntity(articleDto);
+        article.setCategory(category.get());
+        articleRepository.save(article);
+        return ArticleDto.fromEntity(article);
     }
 
     @Override
