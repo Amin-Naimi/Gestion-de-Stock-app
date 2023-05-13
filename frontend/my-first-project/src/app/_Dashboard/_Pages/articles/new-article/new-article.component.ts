@@ -56,8 +56,11 @@ export class NewArticleComponent implements OnInit {
         this.router.navigate(['articles']);
       },
       (error: any) => {
-        this.errorMsg = error.error.errors;
-        console.log(this.errorMsg);
+        if (error && error.error) {
+          this.errorMsg = error.error.errors;
+          console.log(this.errorMsg);
+        }
+        console.log("Mes erreures " +error);
 
       }
     )

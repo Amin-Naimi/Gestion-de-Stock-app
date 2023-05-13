@@ -11,10 +11,10 @@
     </div>-->
   </div>
   <div class="col m-3">
-    <app-details-articles></app-details-articles>
-    <app-details-articles></app-details-articles>
-    <app-details-articles></app-details-articles>
-    <app-details-articles></app-details-articles>
+    <app-details-articles
+    *ngFor="let article of articlesList"
+    [article]="article"
+  ></app-details-articles>
 
   </div>
   <div class="row mb-3">
