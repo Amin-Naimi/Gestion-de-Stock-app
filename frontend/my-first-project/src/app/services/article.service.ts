@@ -29,6 +29,10 @@ export class ArticleService {
     findArticleById(idArticle: number):Observable<Article> {
       return this.httpClient.get<Article>(`${this.APP_URL}/find/${idArticle}`);
     }
+
+    deleteArticle(idArticle: number):Observable<void>{
+      return this.httpClient.delete<void>(`${this.APP_URL}/delete/${idArticle}`);
+    }
 /*
     enregisterArticle(article: Article):Observable<Article> {
       return this.httpClient.post<Article>(`${this.APP_URL}/`,article);

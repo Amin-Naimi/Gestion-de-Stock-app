@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Article } from 'src/app/Models/Article';
 import { ArticleService } from 'src/app/services/article.service';
@@ -13,6 +13,9 @@ export class DetailsArticlesComponent implements OnInit {
   @Input()
   article: Article = {};
 
+  @Input()
+  articleName :string = "";
+
   @Output()
   suppressionResult = new EventEmitter();
 
@@ -21,11 +24,30 @@ export class DetailsArticlesComponent implements OnInit {
     private router: Router,
   ) { }
 
+
   ngOnInit(): void {
   }
 
   modifierArticle(): void {
     this.router.navigate(['newarticles', this.article.id]);
   }
+  confirmerEtSupprimerArticle(): void{
+      if (this.article.id) {
+        console.log("article id : " + this.article.id);
+        this.articleService.deleteArticle(this.article.id)
+        .subscribe((responce : any) => {
+          console.log(responce)
+          this.suppressionResult.emit('success');
+        }, (error : any) => {
+          console.log(error)
+        });
+    }
+
+  }
+
+  teste():void{
+    console.log(this.articleName);
+  }
+
 
 }
