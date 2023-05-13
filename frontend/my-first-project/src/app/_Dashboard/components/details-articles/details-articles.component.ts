@@ -17,24 +17,15 @@ export class DetailsArticlesComponent implements OnInit {
   suppressionResult = new EventEmitter();
 
 
-  constructor(private articleService : ArticleService,
+  constructor(private articleService: ArticleService,
     private router: Router,
-    ){}
+  ) { }
 
   ngOnInit(): void {
-   // this.findAllArticle();
   }
 
-  /*findAllArticle():void{
-    this.articleService.getAllArticles().subscribe(
-      (responce : Article[])=>{
-        console.log(responce);
-        this.articlesList = responce;
-      },
-      (error : any)=>{
-        console.log(error);
-      }
-    )
-  }*/
+  modifierArticle(): void {
+    this.router.navigate(['newarticles', this.article.id]);
+  }
 
 }

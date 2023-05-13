@@ -40,6 +40,9 @@ const routes: Routes = [
 
       },
       { path: "newarticles", component: NewArticleComponent },
+
+      { path: "newarticles/:idarticle", component: NewArticleComponent },
+
       { path: "mvtstk", component: MvtStkComponent },
       { path: "client", component: ClientsComponent },
       { path: "fournisseurs", component: FournisseursComponent },

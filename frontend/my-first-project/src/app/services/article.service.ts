@@ -27,7 +27,7 @@ export class ArticleService {
     }
 
     findArticleById(idArticle: number):Observable<Article> {
-      return this.httpClient.get<Article>(`${this.APP_URL}/${idArticle}`);
+      return this.httpClient.get<Article>(`${this.APP_URL}/find/${idArticle}`);
     }
 /*
     enregisterArticle(article: Article):Observable<Article> {

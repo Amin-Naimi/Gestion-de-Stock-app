@@ -28,6 +28,21 @@ export class NewArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.findAllCategories();
+    const idArticle = this.activatedRoute.snapshot.params['idarticle'];
+    console.log("Id article: " + idArticle);
+    if (idArticle) {
+      this.articleService.findArticleById(idArticle).subscribe(
+        (responce : Article)=>{
+          console.log(responce);
+          this.article = responce;
+          this.category = responce.category!;
+        },
+        (error : any)=>{
+          console.log(error);
+        }
+      )
+    }
+
   }
 
   findAllCategories(): void {
@@ -41,11 +56,6 @@ export class NewArticleComponent implements OnInit {
 
   enregistrerArticle(): void {
     console.log("Category identifiant : " + this.category.id);
-    console.log(this.article.codeArticle);
-    console.log(this.article.designation);
-    console.log(this.article.prixUnitaire);
-    console.log(this.article.prixUnitaireTTc);
-    console.log(this.article.tauxTva);
     this.article.category = this.category;
     console.log("Mon category : "+this.category);
 

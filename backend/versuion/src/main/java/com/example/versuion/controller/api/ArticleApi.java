@@ -24,7 +24,7 @@ public interface ArticleApi {
     ArticleDto save(@RequestBody ArticleDto articleDto);
     //RequestBody : faire la transformation de l'objet de format json vers "ArticleDto"
 
-    @GetMapping(value = APP_ROOT + "/articles/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/articles/find/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Rechercher un article par ID", notes = "Cette methode permet de chercher un article par son ID", response = ArticleDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "L'article a ete trouve dans la BDD"),
