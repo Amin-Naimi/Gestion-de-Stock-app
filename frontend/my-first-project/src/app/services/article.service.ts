@@ -15,10 +15,10 @@ export class ArticleService {
 
   constructor(private router : Router,
     private userService: UserService,
-    private categoryService : CategoryService,
     private httpClient: HttpClient) {}
 
     enregisterArticle(article: Article):Observable<Article> {
+      article.idEntreprise = this.userService.getConnectedUser().entreprise?.id;
       return this.httpClient.post<Article>(`${this.APP_URL}/create`,article);
     }
 

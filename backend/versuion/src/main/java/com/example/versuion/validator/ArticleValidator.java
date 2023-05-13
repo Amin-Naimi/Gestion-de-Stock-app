@@ -27,7 +27,7 @@ public class ArticleValidator {
         if (!StringUtils.hasLength(articleDto.getDesignation())) {
             errors.add("Veuillez renseigner la designation de l'article");
         }
-        if (articleDto.getPrixUnitaireHT() == null) {
+        if (articleDto.getPrixUnitaire() == null) {
             errors.add("Veuillez renseigner le prix unitaire HT l'article");
         }
         if (articleDto.getTauxTva() == null) {

@@ -8,7 +8,7 @@ export interface Article {
   id?: number;
   codeArticle?: string;
   designation?: string;
-  prixUnitaireHt?: number;
+  prixUnitaire?: number;
   tauxTva?: number;
   prixUnitaireTTc?: number;
   photo?: string;
